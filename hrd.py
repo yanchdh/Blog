@@ -1,6 +1,17 @@
 # -*- coding:utf-8 -*-
 import copy
 
+class PathNode(object):
+    def __init__(self, board, self_idx, parent_idx, step, name, x, y, dir):
+        self.board = board
+        self.self_idx = self_idx
+        self.parent_idx = parent_idx
+        self.step = step
+        self.name = name
+        self.x = x
+        self.y = y
+        self.dir = dir
+
 class RoleInfo(object):
     name2id = {}
     id2RoleInfo = {}
@@ -60,22 +71,8 @@ class RoleInfo(object):
                         temp_board[x * col + y] = 0
                 roleInfos.append(RoleInfo(roleInfo.name, i, j, roleInfo.x_size, roleInfo.y_size))
         return roleInfos
-            
-class PathNode(object):
-    def __init__(self, board, self_idx, parent_idx, step, name, x, y, dir):
-        self.board = board
-        self.self_idx = self_idx
-        self.parent_idx = parent_idx
-        self.step = step
-        self.name = name
-        self.x = x
-        self.y = y
-        self.dir = dir
     
 class Solution(object):
-    def __init__(self):
-        self.n = 10
-        
     def solveHuarongRoad(self, roleInfos, row, col, target_name, target_x, target_y):
         dirs = [ [0,1,u'右'], [1,0,u'下'], [0,-1,u'左'], [-1,0,u'上'] ]
         cur_boards, nxt_boards, path, dict_board = [], [], [], {}
@@ -124,18 +121,6 @@ if __name__ == "__main__":
     row = 5
     col = 4
     '''
-        RoleInfo(u'张飞', 3, 0, 2, 1),
-        RoleInfo(u'曹操', 0, 1, 2, 2),
-        RoleInfo(u'马超', 3, 2, 2, 1),
-        RoleInfo(u'黄忠', 3, 1, 2, 1),
-        RoleInfo(u'关羽', 2, 1, 1, 2),
-        RoleInfo(u'赵云', 2, 3, 2, 1),
-        RoleInfo(u'卒卒', 0, 0, 1, 1),
-        RoleInfo(u'卒卒', 1, 3, 1, 1),
-        RoleInfo(u'卒卒', 2, 0, 1, 1),
-        RoleInfo(u'卒卒', 0, 3, 1, 1)
-    '''
-    data = [
         RoleInfo(u'张飞', 0, 3, 2, 1),
         RoleInfo(u'曹操', 0, 1, 2, 2),
         RoleInfo(u'马超', 4, 1, 1, 2),
@@ -146,6 +131,18 @@ if __name__ == "__main__":
         RoleInfo(u'卒卒', 1, 0, 1, 1),
         RoleInfo(u'卒卒', 2, 0, 1, 1),
         RoleInfo(u'卒卒', 3, 0, 1, 1)
+    '''
+    data = [
+        RoleInfo(u'张飞', 3, 0, 2, 1),
+        RoleInfo(u'曹操', 0, 1, 2, 2),
+        RoleInfo(u'马超', 3, 2, 2, 1),
+        RoleInfo(u'黄忠', 3, 1, 2, 1),
+        RoleInfo(u'关羽', 2, 1, 1, 2),
+        RoleInfo(u'赵云', 2, 3, 2, 1),
+        RoleInfo(u'卒卒', 0, 0, 1, 1),
+        RoleInfo(u'卒卒', 1, 3, 1, 1),
+        RoleInfo(u'卒卒', 2, 0, 1, 1),
+        RoleInfo(u'卒卒', 0, 3, 1, 1)
     ]
     target_name = u'曹操'
     target_x = 3
